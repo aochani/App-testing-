@@ -1,0 +1,240 @@
+Screen1 As screen:
+    OnVisible: |-
+        =UpdateContext({lclScreen1Reset:true})
+
+    Form1 As form:
+        DataSource: =ToDoList
+        DefaultMode: =FormMode.New
+        Height: =257
+        Width: =1253
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+        Title_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Title"
+            Default: =ThisItem.Title
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@ToDoList],DataSourceInfo.DisplayName,"Title")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =288
+            MaxLength: =DataSourceInfo([@ToDoList], DataSourceInfo.MaxLength, "Title")
+            Required: =true
+            Update: =DataCardValue1.Text
+            Width: =417
+            WidthFit: =false
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue1 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Clear: =true
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                EnableSpellCheck: =true
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =281
+                X: =30
+                Y: =DataCardKey1.Y + DataCardKey1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue1.Y + DataCardValue1.Height
+                ZIndex: =3
+
+            StarVisible1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey1.Y
+                ZIndex: =4
+
+        "'Tasks To Perform_DataCard1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="TasksToPerform"
+            Default: =ThisItem.'Tasks To Perform'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@ToDoList],DataSourceInfo.DisplayName,"TasksToPerform")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@ToDoList], DataSourceInfo.MaxLength, "TasksToPerform")
+            Required: =false
+            Update: =DataCardValue2.Text
+            Width: =417
+            X: =2
+            Y: =0
+            ZIndex: =2
+
+            DataCardKey2 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue2 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Clear: =true
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                EnableSpellCheck: =true
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =51
+                ZIndex: =2
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue2.Y + DataCardValue2.Height
+                ZIndex: =3
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Height: =DataCardKey2.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey2.Y
+                ZIndex: =4
+
+    Button1 As button:
+        Height: =60
+        OnSelect: =SubmitForm(Form1);
+        Text: ="Post List"
+        Width: =170
+        X: =315
+        Y: =204
+        ZIndex: =2
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =323
+        Items: =ToDoList
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =Min(160, Self.Height - 60)
+        Width: =1085
+        X: =84
+        Y: =333
+        ZIndex: =3
+
+        Image1 As image:
+            Height: =128
+            OnSelect: =Select(Parent)
+            Width: =128
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Title1 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - Image1.Width - 104
+            X: =Image1.X + Image1.Width + 24
+            Y: =44
+            ZIndex: =2
+
+        Subtitle1 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Tasks To Perform'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title1.Width
+            X: =Title1.X
+            Y: =Title1.Y + Title1.Height + 4
+            ZIndex: =3
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Height: =60
+            Icon: =Icon.Reset
+            OnSelect: =ResetForm(Form1);
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="View item details"
+            Width: =60
+            X: =1008
+            Y: =24
+            ZIndex: =4
+
+        Separator1 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+    Icon1 As icon.Reload:
+        Icon: =Icon.Reload
+        OnSelect: =Reload
+        X: =1083
+        Y: =52
+        ZIndex: =6
+

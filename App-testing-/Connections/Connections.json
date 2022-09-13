@@ -1,0 +1,30 @@
+{
+  "5fa4edf0-2266-452e-91f3-d063338aba36": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1578/1.0.1578.2813/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://bowheadsi.sharepoint.com/sites/DevDataVault": {
+        "dataSources": {
+          "ToDoList": {
+            "tableName": "162976c1-4919-4933-ac7b-00cc412be007"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "ToDoList"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "5fa4edf0-2266-452e-91f3-d063338aba36"
+  }
+}
